@@ -1,4 +1,4 @@
 # maven-app-cooking
 summer school
 # todo
-* регистрация
+* заполнение таблиц в БД
