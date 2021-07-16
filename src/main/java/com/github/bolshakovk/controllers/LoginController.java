@@ -1,4 +1,4 @@
-package com.github.bolshakovk;
+package com.github.bolshakovk.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +47,7 @@ public class LoginController {
         loginSignUpbutton.setOnAction(event -> {
             loginSignUpbutton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/github/bolshakovk/SignUpView.fxml"));
+            loader.setLocation(getClass().getResource("/com/github/bolshakovk/views/SignUpView.fxml"));
             try {
                 loader.getLocation();
                 loader.load();

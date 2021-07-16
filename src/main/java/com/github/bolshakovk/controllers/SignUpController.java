@@ -1,5 +1,6 @@
-package com.github.bolshakovk;
+package com.github.bolshakovk.controllers;
 
+import com.github.bolshakovk.DbHandler;
 import com.github.bolshakovk.config.Const;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
