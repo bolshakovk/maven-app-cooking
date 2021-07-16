@@ -65,5 +65,6 @@ public class LoginController {
     }
 
     private void LoginUser(String loginText, String loginPassword) {
+
     }
 }
