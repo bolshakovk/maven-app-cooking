@@ -7,34 +7,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+//tired
 
 public class DbHandler {
-    Connection connection;
-    public  Connection getConnection() throws Exception {
+    Connection connection = null;
+    public  Connection getDbConnection() throws Exception {
         String connectionString = "jdbc:postgresql//:" + Config.dbhost + ":" + Config.dbport + "/" + Config.dbname;
-        Class.forName("com.postgresql.Driver");
+        Class.forName("org.postgresql.Driver");
+
         connection = DriverManager.getConnection(connectionString, Config.dbuser, Config.dbpass);
 
         return connection;
     }
+
     public void SignUpUser(String name,String login, String password) throws SQLException, ClassNotFoundException {
-        String insert = "INSERT INTO " + Const.USER_TABLE + " (" + Const.USER_NAME + "," + Const.USER_LOGIN + "," + Const.USER_PASSWORD + ")"
-                + "VALUES(?,?,?)";
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = getConnection().prepareStatement(insert);
-            System.out.println("connected");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("not connected");
-        }
-
-        preparedStatement.setString(1, name);
-        preparedStatement.setString(2, login);
-        preparedStatement.setString(3, password);
-
-        preparedStatement.executeUpdate();
 
     }
+
 }
