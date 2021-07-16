@@ -11,8 +11,8 @@ import java.sql.SQLException;
 
 public class DbHandler {
     Connection connection = null;
-    public  Connection getDbConnection() throws Exception {
-        String connectionString = "jdbc:postgresql//:" + Config.dbhost + ":" + Config.dbport + "/" + Config.dbname;
+    public Connection getDbConnection() throws Exception {
+        String connectionString = "jdbc:postgresql://" + Config.dbhost + ":" + Config.dbport + "/" + Config.dbname;
         Class.forName("org.postgresql.Driver");
 
         connection = DriverManager.getConnection(connectionString, Config.dbuser, Config.dbpass);
@@ -20,8 +20,16 @@ public class DbHandler {
         return connection;
     }
 
-    public void SignUpUser(String name,String login, String password) throws SQLException, ClassNotFoundException {
-
+    public void SignUpUser(String name, String password, String login){
+        String request = "INSERT INTO " + Const.USER_TABLE + " (" + Const.USER_NAME + ", " + Const.USER_PASSWORD + ", " + Const.USER_LOGIN + ")" +
+                "VALUES(?,?,?)";
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(request);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, login);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 }
