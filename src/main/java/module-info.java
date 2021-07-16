@@ -6,4 +6,5 @@ module maven.app.cooking {
     requires java.sql;
 
     opens com.github.bolshakovk;
+    opens com.github.bolshakovk.controllers;
 }

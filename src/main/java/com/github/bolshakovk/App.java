@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.sql.*;
-import java.util.Properties;
 
 public class App extends Application {
 
@@ -16,7 +15,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("LoginFormView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/LoginFormView.fxml"));
         primaryStage.setTitle("123");
         primaryStage.setScene(new Scene(root,600,400));
         primaryStage.show();
