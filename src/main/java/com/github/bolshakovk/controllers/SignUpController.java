@@ -1,15 +1,13 @@
 package com.github.bolshakovk.controllers;
 
-import com.github.bolshakovk.DbHandler;
-import com.github.bolshakovk.config.Const;
+import com.github.bolshakovk.dbHandler.DbHandler;
+import com.github.bolshakovk.tables.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SignUpController {
@@ -37,9 +35,12 @@ public class SignUpController {
 
     @FXML
     void initialize() {
-        DbHandler dbHandler = new DbHandler();
+
         registrationSignUPbutton.setOnAction(event -> {
-            dbHandler.SignUpUser(signUpNameField.getText(), signUpPasswordField.getText(), signUpLoginField.getText());
+
+            SignUpNewUser();
+
+
             System.out.println("Clicked registration");
 
             if (signUpNameField.getText().equals("") || signUpLoginField.getText().equals("") || signUpLoginField.getText().equals("")){
@@ -47,6 +48,17 @@ public class SignUpController {
             }
             System.out.println("login: "+ signUpLoginField.getText() + "\tname: " + signUpNameField.getText() + "\tpassword: "+ signUpPasswordField.getText());
         });
+    }
+
+    private void SignUpNewUser() {
+        DbHandler dbHandler = new DbHandler();
+        String name = signUpNameField.getText();
+        String password = signUpPasswordField.getText();
+        String login = signUpLoginField.getText();
+
+        User user = new User(name, login, password);
+
+        dbHandler.SignUpUser(user);
     }
 
 }
