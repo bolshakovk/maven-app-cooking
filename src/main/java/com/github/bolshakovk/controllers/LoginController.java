@@ -36,6 +36,9 @@ public class LoginController {
     private Button loginSignUpbutton;
 
     @FXML
+    private ListView<String> testList;
+
+    @FXML
     void initialize() {
         loginSignInbutton.setOnAction(event -> {
             String loginPassword = passwordField.getText().trim();
@@ -56,15 +59,14 @@ public class LoginController {
                 loader.getLocation();
                 loader.load();
                 System.out.println("clicked login button");
+                Parent root = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
         });
     }
 
@@ -83,10 +85,11 @@ public class LoginController {
             e.printStackTrace();
         }
         if(counter>=1){
-            System.out.println("Пользователь найден");
+            System.out.println("Пользователь найден: " + user.getLogin() + user.getPassword());
             OpenNewScene("/com/github/bolshakovk/views/WorkbenchView.fxml");
         }
         else {
+            System.out.println(user.getName() + user.getPassword() + user.getLogin());
             System.out.println("Неверный логин или пароль");
         }
     }

@@ -5,12 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import com.github.bolshakovk.config.*;
+import java.io.ObjectInputFilter;
 import java.sql.*;
 
+
+
 public class App extends Application {
-
-
+    String url = "jdbc:postgresql://" + Config.dbhost + ":" + Config.dbport + "/" +Config.dbname;
+    String user = "postgres";
+    String password  = "1488";
+    Connection connection = null;
 
 
     @Override
@@ -20,20 +25,11 @@ public class App extends Application {
         primaryStage.setScene(new Scene(root,600,400));
         primaryStage.show();
 
-
-        String url = "jdbc:postgresql://localhost:8888/db_cooking_recipes";
-        String user = "postgres";
-        String password  = "1488";
-        Connection connection = null;
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, password);
             Statement statement = connection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery("select * from ingridients");
-            while (resultSet.next()){
-                System.out.println(resultSet.getString(2));
-            }
+            System.out.println("Connected");
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
