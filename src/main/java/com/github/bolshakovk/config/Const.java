@@ -7,4 +7,10 @@ public interface Const {
      String USER_PASSWORD = "password";
      String USER_LOGIN = "login";
      String USER_NAME = "name";
+
+     String INGRIDIENT_TABLE = "ingridients";
+     String INGRIDIENT_NAME = "name";
+
+     String RECIPES_TABLE = "recipes";
+     String RECIPES_NAME = "name";
 }

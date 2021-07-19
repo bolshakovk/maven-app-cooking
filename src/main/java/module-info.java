@@ -7,4 +7,5 @@ module maven.app.cooking {
 
     opens com.github.bolshakovk;
     opens com.github.bolshakovk.controllers;
+    opens com.github.bolshakovk.dbHandler;
 }
