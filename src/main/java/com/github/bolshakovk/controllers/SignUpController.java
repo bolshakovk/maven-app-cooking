@@ -40,12 +40,12 @@ public class SignUpController {
 
             SignUpNewUser();
 
-
             System.out.println("Clicked registration");
 
             if (signUpNameField.getText().equals("") || signUpLoginField.getText().equals("") || signUpLoginField.getText().equals("")){
                 System.out.println("no text in fields");
             }
+
             System.out.println("login: "+ signUpLoginField.getText() + "\tname: " + signUpNameField.getText() + "\tpassword: "+ signUpPasswordField.getText());
         });
     }

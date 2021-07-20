@@ -13,4 +13,10 @@ public interface Const {
 
      String RECIPES_TABLE = "recipes";
      String RECIPES_NAME = "name";
+     String RECIPES_ID = "id";
+
+     String ING_REC_TABLE = "ing-rec";
+     String ING_REC_ing = "ing_id";
+     String ING_REC_rep = "rec_id";
+
 }

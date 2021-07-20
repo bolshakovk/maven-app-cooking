@@ -59,7 +59,15 @@ public class DbHandler {
     }
     public ResultSet getRecipes(Recipes recipes){
         ResultSet resultSet = null;
-        String request = "SELECT * FROM " + Const.RECIPES_TABLE ;
+        String request = "SELECT r.id, r.name FROM recipes r LEFT JOIN ing_rec ir ON r.id = ir.rec_id Where ir.ing_id IN (?) ";
+
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(request);
+            preparedStatement.setInt(1, recipes.getId());
+            resultSet = preparedStatement.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return resultSet;
     }
 }
