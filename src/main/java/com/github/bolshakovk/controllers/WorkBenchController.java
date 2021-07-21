@@ -17,12 +17,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
 
 public class WorkBenchController {
+    @FXML
+    private Button clearButton;
 
     @FXML
     private ResourceBundle resources;
@@ -44,6 +47,7 @@ public class WorkBenchController {
 
         Recipes recipes = new Recipes();
         ResultSet resultSetRec = dbHandler.getRecipes(recipes);
+
         List allRows = new ArrayList();
 
         while(resultSet.next()){
@@ -55,34 +59,84 @@ public class WorkBenchController {
         }
 
         List allRowsRec = new ArrayList();
-        while(resultSetRec.next()){
+
+        while(resultSet.next()){
             String[] currentRow = new String[2];
             for(int i = 1;i<=2;i++){
                 currentRow[i-1]=resultSet.getString(i);
             }
-            allRowsRec.add(currentRow[1]);
-        }
+            allRows.add(currentRow[1]);
+        } //
 
         listIngridients.getItems().addAll(allRows);
         listIngridients.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
+        while(resultSetRec.next()){
+            String[] currentRow = new String[2];
+            for(int i = 1;i<=2;i++){
+                currentRow[i-1]=resultSetRec.getString(i);
+            }
+            allRowsRec.add(currentRow[1]);
+        }
 
-        listRecipes.getItems().addAll(allRowsRec);
-        listRecipes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
+        ObservableList<String> selectedItems =  listIngridients.getSelectionModel().getSelectedItems();
         listIngridients.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            int counter = 0;
             @Override
             public void handle(MouseEvent event) {
-                ObservableList<String> selectedItems =  listIngridients.getSelectionModel().getSelectedItems();
+                System.out.println("selected items: " + selectedItems);
+                if (selectedItems.contains("Potato") || selectedItems.contains("Carrot") || selectedItems.contains("Onion")|| selectedItems.contains("Pork")){
+                    if (listRecipes.getItems().contains("Soup")){
+                        System.out.println("List recipes already contains soup");
+                    }
+                    else {
+                        listRecipes.getItems().add("Soup");
+                    }
 
-                for(String s : selectedItems){
-                    System.out.println(s);
                 }
-                ObservableList<String> selectedRecItems =  listRecipes.getSelectionModel().getSelectedItems();
 
-                for(String s1 : selectedRecItems){
-                    System.out.println(s1);
+                if (selectedItems.contains("Fish") || selectedItems.contains("Garlic") || selectedItems.contains("Onion")){
+                    if (listRecipes.getItems().contains("Boiled fish")){
+                        System.out.println("List recipes already contains Boiled fish");
+                    }
+                    else {
+                        listRecipes.getItems().add("Boiled fish");
+                    }
                 }
+                if (selectedItems.contains("Potato") || selectedItems.contains("Cheese") || selectedItems.contains("Pork")|| selectedItems.contains("Mushrooms")){
+                    if (listRecipes.getItems().contains("Pasta")){
+                        System.out.println("List recipes already contains Pasta");
+                    }
+                    else {
+                        listRecipes.getItems().add("Pasta");
+                    }
+                }
+
+                if (selectedItems.contains("Onion") || selectedItems.contains("Garlic") || selectedItems.contains("Potato")){
+                    if (listRecipes.getItems().contains("Salat")){
+                        System.out.println("List recipes already contains Salat");
+                    }
+                    else {
+                        listRecipes.getItems().add("Salat");
+                    }
+                }
+
+                if (selectedItems.contains("Pork") || selectedItems.contains("Beef") || selectedItems.contains("Beet")){
+                    if (listRecipes.getItems().contains("Roast meal")){
+                        System.out.println("List recipes already contains Roast meal");
+                    }
+                    else {
+                        listRecipes.getItems().add("Roast meal");
+                    }
+                }
+            }
+        });
+
+        clearButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                listRecipes.getItems().clear();
             }
         });
     }
