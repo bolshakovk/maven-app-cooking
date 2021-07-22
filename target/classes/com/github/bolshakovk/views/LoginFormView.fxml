@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FF8000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.bolshakovk.controllers.LoginController">
+    <children>
+        <AnchorPane layoutX="118.0" layoutY="82.0" prefHeight="253.0" prefWidth="350.0" style="-fx-background-color: fafafa; -fx-background-radius: 10;">
+            <children>
+                <Button fx:id="loginSignInbutton" layoutX="132.0" layoutY="184.0" mnemonicParsing="false" style="-fx-background-color: FF8000; -fx-background-radius: 10;" text="Вход">
+                    <font>
+                        <Font name="Fira Code SemiBold" size="23.0" />
+                    </font>
+                </Button>
+                <TextField fx:id="loginField" layoutX="103.0" layoutY="102.0" promptText="Логин" style="-fx-background-radius: 10;" />
+                <PasswordField fx:id="passwordField" layoutX="103.0" layoutY="136.0" promptText="пароль" style="-fx-background-radius: 10;" />
+                <Label layoutX="43.0" layoutY="30.0" text="Авторизация" textFill="#969292">
+                    <font>
+                        <Font name="Segoe UI Semibold Italic" size="41.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <Label layoutX="28.0" layoutY="17.0" text="Tasty app">
+            <font>
+                <Font name="Segoe UI Semibold Italic" size="41.0" />
+            </font>
+        </Label>
+        <Button fx:id="loginSignUpbutton" layoutX="449.0" layoutY="31.0" mnemonicParsing="false" style="-fx-background-color: fafafa; -fx-background-radius: 10;" text="Регистрация" textFill="#8d8b8b">
+            <font>
+                <Font name="Fira Code SemiBold" size="15.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
